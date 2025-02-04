@@ -1,4 +1,7 @@
 .note-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     width: 250px;
     height: 300px;
     background: rgb(97, 98, 131);
@@ -9,4 +12,51 @@
 
 .note-content {
     color: black;
+}
+
+.note-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.note-date {
+    font-size: 14px;
+    color: black;
+}
+
+.note-title {
+    display: inline-block;
+    border-bottom: 2px solid rgb(240, 135, 0);
+}
+
+.btns {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    font-size: large;
+    color: black;
+    border: none;
+    padding: 8px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.edit {
+    background: #1831F2;
+}
+
+.edit:hover {
+    background: #5165F5;
+}
+
+.delete {
+    background: #B4312D;
+}
+
+.delete:hover {
+    background: #D2504B;
 }

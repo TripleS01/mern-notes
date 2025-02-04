@@ -1,9 +1,11 @@
-@import "../src/components/Dashboard/dashboard.css";
+@import "../src/pages/Dashboard/dashboard.css";
 @import "../src/components/Header/header.css";
 @import "../src/components/Note/NoteCard/noteCard.css";
+@import "../src/components/Note/NoteModals-Create-Edit/create-edit.css";
 
 #root {
   max-width: 1280px;
   margin: auto;
   text-align: center;
+  padding-top: 30px;
 }
