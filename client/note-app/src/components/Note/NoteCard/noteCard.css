@@ -1,0 +1,12 @@
+.note-card {
+    width: 250px;
+    height: 300px;
+    background: rgb(97, 98, 131);
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.note-content {
+    color: black;
+}

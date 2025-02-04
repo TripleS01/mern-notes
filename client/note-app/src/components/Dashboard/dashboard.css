@@ -1,0 +1,11 @@
+.notes-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 16px;
+}
+
+.line {
+    border-radius: 5px;
+    border: 2px solid rgb(240, 135, 0);
+}
