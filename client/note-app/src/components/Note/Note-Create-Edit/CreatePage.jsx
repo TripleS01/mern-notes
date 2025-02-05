@@ -1,24 +1,43 @@
 import React, { useState } from "react";
-import useCreate from "../../../hooks/useCreateNote.js";
+import { Navigate } from "react-router-dom";
+import Dashboard from "../../../pages/Dashboard/Dashboard";
+import PathTo from "../../../utils/paths";
 
-function CreateNoteModal({ isOpen, isClose, onAddNote }) {
+function CreateNote() {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
-    const { loading, create } = useCreate();
+    const [redirect, setRedirect] = useState(false);
+
 
     async function onCreate(event) {
         event.preventDefault();
-        await create(title, description, onAddNote);
-        onClose();
+
+        if (!title) {
+            setErrorMessage('Title is required');
+            return;
+        }
+
+        const dataForm = new FormData();
+        dataForm.set('title', title);
+        dataForm.set('description', description);
+
+        const response = await fetch("http://localhost:7272/server/note/create", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ title, description }),
+        });
+
+        if (response.ok) {
+            setRedirect(true);
+        }
     }
 
-    function onClose() {
-        setTitle("");
-        setDescription("");
-        isClose();
+    if (redirect) {
+        return <Navigate to={PathTo.Dashboard} />;
     }
 
-    if (!isOpen) return null;
 
     return (
         <div className="modal-overlay">
@@ -39,14 +58,8 @@ function CreateNoteModal({ isOpen, isClose, onAddNote }) {
                             value={description}
                             onChange={(event) => setDescription(event.target.value)}
                         />
-                        <button type="submit" className="create-btn" disabled={loading}>
-                            {loading ? "Creating..." : "Create"}
-                        </button>
-                    </div>
-
-                    <div className="cancel-div">
-                        <button type="button" className="cancel-btn" onClick={onClose}>
-                            Cancel
+                        <button type="submit" className="create-btn" >
+                            Create
                         </button>
                     </div>
                 </form>
@@ -55,4 +68,4 @@ function CreateNoteModal({ isOpen, isClose, onAddNote }) {
     );
 }
 
-export default CreateNoteModal;
+export default CreateNote;

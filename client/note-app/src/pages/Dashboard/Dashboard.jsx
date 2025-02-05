@@ -1,31 +1,41 @@
-import React, { useState } from "react";
-
-import NoteCard from "../../components/Note/NoteCard/NoteCard";
-import Header from "../../components/Header/Header";
-import useGetNotes from "../../hooks/useGetNotes.js";
+import React, { useEffect, useState } from "react";
+import NoteCard from "../../components/Note/NoteCard/NoteCard.jsx";
 
 function Dashboard() {
-    const { notes, loading } = useGetNotes();
+    const [notes, setNotes] = useState([]);
 
-    const onAddNote = (newNote) => {
-        setNotes([...notes, newNote]);
-    }
+    useEffect(() => {
+        fetchNotes();
+    }, []);
 
-    if (loading) return <p>Loading notes...</p>;
+    const fetchNotes = () => {
+        fetch("http://localhost:7272/server/notes")
+            .then(response => {
+                if (!response.ok) throw new Error("Failed to fetch notes");
+                return response.json();
+            })
+            .then(data => setNotes(data))
+            .catch(error => console.error("Error fetching notes:", error));
+    };
 
     return (
         <>
-            <Header onAddNote={onAddNote} />
-
             <div className="line"></div>
 
             <div className="notes-grid">
                 {notes.map((note, index) => (
-                    <NoteCard key={index} title={note.title} description={note.description} />
+                    <NoteCard
+                        key={note._id || index} // Използвай _id вместо id
+                        _id={note._id}
+                        title={note.title}
+                        createdAt={note.createdAt}
+                        description={note.description}
+                    />
                 ))}
             </div>
+
         </>
     );
 }
 
-export default Dashboard
+export default Dashboard;

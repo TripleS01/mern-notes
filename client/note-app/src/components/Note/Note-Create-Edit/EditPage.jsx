@@ -1,42 +1,55 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import useEditNote from "../../../hooks/useEditNote.js";
+import { useParams } from "react-router-dom";
 
-function EditNoteModal({ isOpen, isClose }) {
+function EditNote({ note }) {
     const { id } = useParams();
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const { loading, edit } = useEditNote();
 
-    useEffect(() => {
-        if (!isOpen) return;
+    // useEffect(() => {
+    //     fetch(`http://localhost:7272/server/notes/${id}`)
+    //         .then(response => response.json())
+    //         .then(dataPost => {
+    //             setTitle(dataPost.title);
+    //             setDescription(dataPost.description);
+    //         })
+    //         .catch(error => console.error('Error fetching post:', error));
 
-        async function fetchNote() {
-            const response = await fetch(`http://localhost:7272/server/notes/${id}`);
-            const data = await response.json();
-            setNote(data);
-        }
+    // }, [id]);
 
-        fetchNote();
-    }, [id, isOpen]);
 
-    async function onEdit(event) {
-        event.preventDefault();
-        await edit(id, title, description);
-        onClose();
-    }
+    // async function onEdit(event) {
+    //     event.preventDefault();
 
-    function onClose() {
-        isClose();
-    }
+    //     if (!title) {
+    //         setErrorMessage('Title is required');
+    //         return;
+    //     }
 
-    if (!isOpen) return null;
+    //     const dataForm = new FormData();
+    //     dataForm.set('title', title);
+    //     dataForm.set('description', description);
+    //     dataForm.set('id', id);
+
+    //     const response = await fetch('http://localhost:5757/notes', {
+    //         method: 'PUT',
+    //         body: dataForm,
+    //         credentials: 'include',
+    //     });
+
+    //     if (response.ok) {
+    //         setRedirect(true);
+    //     }
+    // }
+
 
     return (
         <div className="modal-overlay">
             <div className="modal">
                 <h3>Edit Note</h3>
-                <form onSubmit={onEdit}>
+                <form >
                     <input
                         type="text"
                         className="modal-input"
@@ -52,7 +65,7 @@ function EditNoteModal({ isOpen, isClose }) {
                         {loading ? "Saving..." : "Save Changes"}
                     </button>
                     <div className="cancel-div">
-                        <button type="button" className="cancel-btn" onClick={onClose}>
+                        <button type="button" className="cancel-btn" >
                             Cancel
                         </button>
                     </div>
@@ -62,4 +75,4 @@ function EditNoteModal({ isOpen, isClose }) {
     );
 }
 
-export default EditNoteModal;
+export default EditNote;

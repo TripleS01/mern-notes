@@ -1,23 +1,24 @@
-import React from 'react'
-import { BsTrash3 } from "react-icons/bs";
-import { FiEdit2 } from "react-icons/fi";
+import React from 'react';
+import extractTime from '../../../utils/extractTime.js';
+import PathTo from '../../../utils/paths.js';
+import { Link } from 'react-router-dom';
 
-function NoteCard({ title, description }) {
+function NoteCard({ _id, title, createdAt, description }) {
+    const formattedTime = extractTime(createdAt);
+
     return (
         <div className="note-card">
             <div>
-                <h3 className="note-title">{title}</h3>
+                <Link to={PathTo.Notes + `/${_id}`}>
+                    <h3 className="note-title">{title}</h3>
+                </Link>
                 <p className="note-content">{description}</p>
             </div>
             <div className="note-footer">
-                <span className="note-date">26.02.2002</span>
-                <div className='btns'>
-                    <button className="edit btn"><FiEdit2 /></button>
-                    <button className="delete btn"><BsTrash3 /></button>
-                </div>
+                <span className="note-date">{formattedTime}</span>
             </div>
         </div>
-    )
+    );
 }
 
-export default NoteCard
+export default NoteCard;

@@ -4,8 +4,8 @@ import toast from 'react-hot-toast';
 export default function useCreate() {
     const [loading, setLoading] = useState(false);
 
-    async function create(title, description) {
-        const success = handleInputErrors(title, description, onAddNote);
+    async function create(title, description, onAddNote) {
+        const success = handleInputErrors(title, description);
         if (!success) {
             return;
         }
@@ -25,14 +25,13 @@ export default function useCreate() {
 
             if (response.ok) {
                 toast.success("Note created successfully!");
-                onAddNote(data);
+                onAddNote(data);  // Add the note to the state immediately after success
             } else {
                 toast.error(data.message || "Failed to create note.");
             }
 
         } catch (error) {
             toast.error(error.message);
-
         } finally {
             setLoading(false);
         }
