@@ -5,7 +5,7 @@ export default function useCreate() {
     const [loading, setLoading] = useState(false);
 
     async function create(title, description) {
-        const success = handleInputErrors(title, description);
+        const success = handleInputErrors(title, description, onAddNote);
         if (!success) {
             return;
         }
@@ -22,6 +22,13 @@ export default function useCreate() {
             });
 
             const data = await response.json();
+
+            if (response.ok) {
+                toast.success("Note created successfully!");
+                onAddNote(data);
+            } else {
+                toast.error(data.message || "Failed to create note.");
+            }
 
         } catch (error) {
             toast.error(error.message);

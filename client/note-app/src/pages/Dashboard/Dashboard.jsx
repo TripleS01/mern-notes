@@ -11,13 +11,13 @@ function Dashboard() {
         { title: "Note 4", content: "This is the fourth note." },
     ]);
 
-    const handleAddNote = (newNote) => {
+    const onAddNote = (newNote) => {
         setNotes([...notes, newNote]);
     }
 
     return (
         <>
-            <Header onAddNote={handleAddNote} />
+            <Header onAddNote={onAddNote} />
 
             <div className="line"></div>
 

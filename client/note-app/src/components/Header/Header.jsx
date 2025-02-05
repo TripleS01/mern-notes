@@ -15,7 +15,7 @@ function Header({ onAddNote }) {
 
             <CreateNoteModal
                 isOpen={isModalOpen}
-                onClose={() => setIsModalOpen(false)}
+                isClose={() => setIsModalOpen(false)}
                 onAddNote={onAddNote}
             />
         </div>

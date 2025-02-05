@@ -29,6 +29,7 @@
 .note-title {
     display: inline-block;
     border-bottom: 2px solid rgb(240, 135, 0);
+    padding-bottom: 5px;
 }
 
 .btns {
@@ -43,6 +44,7 @@
     padding: 8px 10px;
     border-radius: 6px;
     cursor: pointer;
+    transition: .4s ease-in-out;
 }
 
 .edit {
