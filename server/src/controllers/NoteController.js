@@ -37,29 +37,6 @@ export const getNotes = async (request, response) => {
     }
 };
 
-export const getNote = async (request, response) => {
-
-    try {
-        const { id } = request.params;
-
-        if (!id) {
-            return response.status(400).json({ message: "Please provide a note id" });
-        }
-
-        const note = await noteModel.findById(id);
-
-        if (!note) {
-            return response.status(404).json({ message: "Note not found!" });
-        }
-
-        response.status(200).json(note);
-
-    } catch (error) {
-        console.log("Error in getNote controller: ", error.message);
-        response.status(500).json({ message: error.message });
-    }
-};
-
 export const updateNote = async (request, response) => {
 
     try {

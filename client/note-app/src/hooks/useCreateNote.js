@@ -13,7 +13,7 @@ export default function useCreate() {
         setLoading(true);
 
         try {
-            const response = await fetch("http://localhost:7272/server/notes", {
+            const response = await fetch("http://localhost:7272/server/note/create", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
