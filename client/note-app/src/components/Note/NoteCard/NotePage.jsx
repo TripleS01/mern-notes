@@ -1,6 +1,5 @@
 import React from 'react'
-import { format } from 'date-fns';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { BsTrash3 } from "react-icons/bs";
 import { FiEdit2 } from "react-icons/fi";
@@ -10,22 +9,10 @@ function NotePage() {
     const [note, setNote] = useState(null);
 
     useEffect(() => {
-        const fetchNote = async () => {
-            try {
-                const response = await fetch(`http://localhost:7272/note/${id}`);
-                if (!response.ok) {
-                    throw new Error('Failed to fetch note');
-                }
-                const data = await response.json();
-                if (!data) throw new Error('Note not found'); 
-                setNote(data);
-            } catch (error) {
-                console.error("Error fetching note:", error);
-                setNote({ error: true }); 
-            }
-        };
+        fetch(`http://localhost:7272/server/notes/${id}`)
+            .then(response => response.json())
+            .then(data => setNote(data))
 
-        fetchNote();
     }, [id]);
 
 
