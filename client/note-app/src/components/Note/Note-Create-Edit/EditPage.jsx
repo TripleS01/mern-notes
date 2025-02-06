@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
-import useEditNote from "../../../hooks/useEditNote.js";
 import { useParams } from "react-router-dom";
 
 function EditNote({ note }) {
     const { id } = useParams();
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
-    const { loading, edit } = useEditNote();
 
     // useEffect(() => {
     //     fetch(`http://localhost:7272/server/notes/${id}`)
