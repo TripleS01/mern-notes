@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import Dashboard from "../../../pages/Dashboard/Dashboard";
 import PathTo from "../../../utils/paths";
 
@@ -34,6 +34,11 @@ function CreateNote() {
         }
     }
 
+    const onCancel = () => {
+        setTitle("");
+        setDescription("");
+    };
+
     if (redirect) {
         return <Navigate to={PathTo.Dashboard} />;
     }
@@ -62,9 +67,14 @@ function CreateNote() {
                             Create
                         </button>
                     </div>
+                    <div className='cancel-div'>
+                        <Link to={PathTo.Dashboard}>
+                            <button className='cancel-btn' onClick={onCancel}>Cancel</button>
+                        </Link>
+                    </div>
                 </form>
-            </div>
-        </div>
+            </div >
+        </div >
     );
 }
 

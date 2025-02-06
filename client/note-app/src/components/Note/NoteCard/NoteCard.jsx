@@ -8,7 +8,7 @@ function NoteCard({ _id, title, createdAt, description }) {
 
     return (
         <div className="note-card">
-            <div>
+            <div className='a'>
                 <Link to={PathTo.Notes + `/${_id}`}>
                     <h3 className="note-title">{title}</h3>
                 </Link>

@@ -20,8 +20,6 @@ function Dashboard() {
 
     return (
         <>
-            <div className="line"></div>
-
             <div className="notes-grid">
                 {notes.map((note, index) => (
                     <NoteCard
