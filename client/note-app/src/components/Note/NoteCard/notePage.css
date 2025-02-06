@@ -1,0 +1,86 @@
+.page-overlay {
+    margin: auto;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 500px;
+    height: 600px;
+    background: rgb(97, 98, 131);
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.note-title-np {
+    font-size: 30px;
+    display: inline-block;
+    border-bottom: 2px solid rgb(240, 135, 0);
+    padding-bottom: 5px;
+}
+
+.note-content-np {
+    color: black;
+    font-size: 20px;
+}
+
+.note-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.note-footer-np {
+    display: flex;
+    align-items: center;
+}
+
+.note-date {
+    font-size: 16px;
+}
+
+.btns {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    justify-content: flex-end;
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    font-size: large;
+    color: black;
+    border: none;
+    padding: 8px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: .4s ease-in-out;
+}
+
+.edit {
+    background: #1831F2;
+}
+
+.edit:hover {
+    background: #5165F5;
+}
+
+.delete {
+    background: #B4312D;
+}
+
+.delete:hover {
+    background: #D2504B;
+}
+
+.back {
+    background: rgb(240, 135, 0);
+}
+
+.back:hover {
+    background: #F3B61F;
+}

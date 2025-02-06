@@ -1,6 +1,7 @@
 @import "../src/pages/Dashboard/dashboard.css";
 @import "../src/components/Main/Header/header.css";
 @import "../src/components/Note/NoteCard/noteCard.css";
+@import "../src/components/Note/NoteCard/notePage.css";
 @import "../src/components/Note/Note-Create-Edit/create-edit.css";
 
 #root {

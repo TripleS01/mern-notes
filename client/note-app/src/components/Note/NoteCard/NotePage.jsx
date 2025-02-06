@@ -1,15 +1,16 @@
 import React from 'react'
-import { Navigate, useParams } from 'react-router-dom';
+import { Link, Navigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { BsTrash3 } from "react-icons/bs";
 import { FiEdit2 } from "react-icons/fi";
 import PathTo from '../../../utils/paths';
+import extractTime from '../../../utils/extractTime';
+import { format } from 'date-fns';
 
 function NotePage() {
     const { id } = useParams();
     const [note, setNote] = useState(null);
     const [redirect, setRedirect] = useState(false);
-
 
     useEffect(() => {
         fetch(`http://localhost:7272/server/notes/${id}`)
@@ -45,12 +46,15 @@ function NotePage() {
     }
 
     return (
-        <div>
+        <div className='page-overlay'>
             <div>
-                <h3 className="note-title">{note.title}</h3>
-                <p className="note-content">{note.description}</p>
+                <h3 className="note-title-np">{note.title}</h3>
+                <p className="note-content-np">{note.description}</p>
             </div>
             <div className="note-footer">
+                <div className="note-footer-np">
+                    <span className="note-date"> {format(new Date(note.createdAt), 'HH:mm dd.MM.yyyy')}</span>
+                </div>
                 <div className='btns'>
                     <button className="edit btn">
                         <FiEdit2 />
@@ -58,6 +62,11 @@ function NotePage() {
                     <button className="delete btn" onClick={onDelete}>
                         <BsTrash3 />
                     </button>
+                    <Link to={PathTo.Dashboard}>
+                        <button className="back btn">
+                            Go Back
+                        </button>
+                    </Link>
                 </div>
             </div>
         </div>

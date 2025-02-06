@@ -14,14 +14,6 @@
     color: black;
 }
 
-.note-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 10px;
-    justify-content: flex-end;
-}
-
 .note-date {
     font-size: 14px;
     color: black;
@@ -31,39 +23,4 @@
     display: inline-block;
     border-bottom: 2px solid rgb(240, 135, 0);
     padding-bottom: 5px;
-}
-
-.btns {
-    display: flex;
-    gap: 10px;
-}
-
-.btn {
-    font-size: large;
-    color: black;
-    border: none;
-    padding: 8px 10px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: .4s ease-in-out;
-}
-
-.edit {
-    background: #1831F2;
-}
-
-.edit:hover {
-    background: #5165F5;
-}
-
-.delete {
-    background: #B4312D;
-}
-
-.delete:hover {
-    background: #D2504B;
-}
-
-.a a {
-    color: inherit;
 }
