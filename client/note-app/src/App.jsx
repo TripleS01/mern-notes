@@ -19,7 +19,6 @@ function App() {
           <Route index element={<Dashboard />} />
           <Route path={PathTo.NoteId} element={<NotePage />} />
           <Route path={PathTo.CreateNote} element={<CreateNote />} />
-          <Route path={PathTo.EditNote} element={<EditNote />} />
           <Route path={PathTo.EditNoteId} element={<EditNote />} />
           {/* <Route path={"*"} element={<NotFound />} /> */}
 

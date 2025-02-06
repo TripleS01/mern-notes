@@ -32,6 +32,12 @@ function Dashboard() {
                 ))}
             </div>
 
+            {notes.length == 0 && (
+                <div className="no-notes-message">
+                    <h2 className="">No notes yet...</h2>
+                </div>
+            )}
+
         </>
     );
 }

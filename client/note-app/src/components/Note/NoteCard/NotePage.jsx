@@ -29,12 +29,6 @@ function NotePage() {
             method: 'DELETE',
         });
 
-        const data = await response.json();
-
-        if (!response.ok) {
-            throw new Error(data.message || "Failed to delete note");
-        }
-
         if (response.ok) {
             setRedirect(true);
         }
@@ -55,7 +49,7 @@ function NotePage() {
                     <span className="note-date"> {format(new Date(note.createdAt), 'HH:mm dd.MM.yyyy')}</span>
                 </div>
                 <div className='btns'>
-                    <Link to={PathTo.EditNote}>
+                    <Link to={PathTo.EditNote + `/${note._id}`}>
                         <button className="edit btn">
                             <FiEdit2 />
                         </button>

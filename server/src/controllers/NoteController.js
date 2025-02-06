@@ -63,21 +63,12 @@ export const getNote = async (request, response) => {
 export const updateNote = async (request, response) => {
 
     try {
-        const { id } = request.params;
-        const { title, description } = request.body;
-
-        if (!id) {
-            return response.status(400).json({ message: "Please provide a note id" });
-        }
+        const { id, title, description } = request.body;
 
         const note = await noteModel.findById(id);
-
         if (!note) {
             return response.status(404).json({ message: "Note not found!" });
         }
-
-        note.title = title || note.title;
-        note.description = description || note.description;
 
         await note.updateOne({
             title,

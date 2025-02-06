@@ -9,3 +9,8 @@
     border-radius: 5px;
     border: 2px solid rgb(240, 135, 0);
 }
+
+.no-notes-message {
+    display: flex;
+    justify-content: center;
+}

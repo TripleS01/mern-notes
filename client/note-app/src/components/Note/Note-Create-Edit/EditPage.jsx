@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import PathTo from "../../../utils/paths";
 
 function EditNote() {
@@ -8,11 +8,45 @@ function EditNote() {
     const [description, setDescription] = useState("");
     const [redirect, setRedirect] = useState(false);
 
+    useEffect(() => {
+        fetch(`http://localhost:7272/server/notes/${id}`)
+            .then(response => response.json())
+            .then(dataNote => {
+                setTitle(dataNote.title);
+                setDescription(dataNote.description);
+            })
+
+    }, [id]);
+
     async function onEdit(event) {
         event.preventDefault();
 
+        if (!title) {
+            setErrorMessage('Title is required');
+            return;
+        }
+
+        const dataForm = new FormData();
+        dataForm.set('title', title);
+        dataForm.set('description', description);
+        dataForm.set('id', id);
+
+        const response = await fetch('http://localhost:7272/server/notes/edit', {
+            method: 'PUT',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ title, description, id }),
+        });
+
+        if (response.ok) {
+            setRedirect(true);
+        }
     }
 
+    if (redirect) {
+        return <Navigate to={PathTo.Dashboard} />;
+    }
 
     return (
         <div className="modal-overlay">

@@ -21,7 +21,7 @@ function CreateNote() {
         dataForm.set('title', title);
         dataForm.set('description', description);
 
-        const response = await fetch("http://localhost:7272/server/note/create", {
+        const response = await fetch("http://localhost:7272/server/notes/create", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
