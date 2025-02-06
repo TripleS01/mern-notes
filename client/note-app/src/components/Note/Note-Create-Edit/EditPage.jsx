@@ -1,53 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import PathTo from "../../../utils/paths";
 
-function EditNote({ note }) {
+function EditNote() {
     const { id } = useParams();
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
+    const [redirect, setRedirect] = useState(false);
 
-    // useEffect(() => {
-    //     fetch(`http://localhost:7272/server/notes/${id}`)
-    //         .then(response => response.json())
-    //         .then(dataPost => {
-    //             setTitle(dataPost.title);
-    //             setDescription(dataPost.description);
-    //         })
-    //         .catch(error => console.error('Error fetching post:', error));
+    async function onEdit(event) {
+        event.preventDefault();
 
-    // }, [id]);
-
-
-    // async function onEdit(event) {
-    //     event.preventDefault();
-
-    //     if (!title) {
-    //         setErrorMessage('Title is required');
-    //         return;
-    //     }
-
-    //     const dataForm = new FormData();
-    //     dataForm.set('title', title);
-    //     dataForm.set('description', description);
-    //     dataForm.set('id', id);
-
-    //     const response = await fetch('http://localhost:5757/notes', {
-    //         method: 'PUT',
-    //         body: dataForm,
-    //         credentials: 'include',
-    //     });
-
-    //     if (response.ok) {
-    //         setRedirect(true);
-    //     }
-    // }
+    }
 
 
     return (
         <div className="modal-overlay">
             <div className="modal">
                 <h3>Edit Note</h3>
-                <form >
+                <form onSubmit={onEdit}>
                     <input
                         type="text"
                         className="modal-input"
@@ -59,13 +30,15 @@ function EditNote({ note }) {
                         value={description}
                         onChange={(event) => setDescription(event.target.value)}
                     />
-                    <button type="submit" className="create-btn" disabled={loading}>
-                        {loading ? "Saving..." : "Save Changes"}
+                    <button type="submit" className="save-btn">
+                        Save Changes
                     </button>
                     <div className="cancel-div">
-                        <button type="button" className="cancel-btn" >
-                            Cancel
-                        </button>
+                        <Link to={PathTo.Dashboard}>
+                            <button type="button" className="cancel-btn">
+                                Cancel
+                            </button>
+                        </Link>
                     </div>
                 </form>
             </div>

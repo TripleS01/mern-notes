@@ -23,7 +23,7 @@ function Dashboard() {
             <div className="notes-grid">
                 {notes.map((note, index) => (
                     <NoteCard
-                        key={note._id || index} // Използвай _id вместо id
+                        key={note._id || index}
                         _id={note._id}
                         title={note.title}
                         createdAt={note.createdAt}

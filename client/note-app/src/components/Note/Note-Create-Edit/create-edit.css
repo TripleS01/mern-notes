@@ -59,6 +59,7 @@ textarea.modal-input {
     resize: none;
 }
 
+.save-btn,
 .create-btn {
     font-size: 15px;
     background: rgb(240, 135, 0);
@@ -72,6 +73,7 @@ textarea.modal-input {
     transition: .4s ease-in-out;
 }
 
+.save-btn:hover,
 .create-btn:hover {
     background: #F3B61F;
 }

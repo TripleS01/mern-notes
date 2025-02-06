@@ -79,7 +79,10 @@ export const updateNote = async (request, response) => {
         note.title = title || note.title;
         note.description = description || note.description;
 
-        await note.save();
+        await note.updateOne({
+            title,
+            description,
+        });
 
         return response.status(200).json(note);
 

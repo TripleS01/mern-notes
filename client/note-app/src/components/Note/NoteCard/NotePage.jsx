@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import { BsTrash3 } from "react-icons/bs";
 import { FiEdit2 } from "react-icons/fi";
 import PathTo from '../../../utils/paths';
-import extractTime from '../../../utils/extractTime';
 import { format } from 'date-fns';
 
 function NotePage() {
@@ -56,9 +55,11 @@ function NotePage() {
                     <span className="note-date"> {format(new Date(note.createdAt), 'HH:mm dd.MM.yyyy')}</span>
                 </div>
                 <div className='btns'>
-                    <button className="edit btn">
-                        <FiEdit2 />
-                    </button>
+                    <Link to={PathTo.EditNote}>
+                        <button className="edit btn">
+                            <FiEdit2 />
+                        </button>
+                    </Link>
                     <button className="delete btn" onClick={onDelete}>
                         <BsTrash3 />
                     </button>
